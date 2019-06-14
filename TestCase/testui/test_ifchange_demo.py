@@ -41,7 +41,6 @@ class TestFirstDemo:
     def test_resume_detail(self, driver):
         base = baseUI(driver)
         # 打开网址
-        driver = webdriver(driver)
         base.driver.get("https://www.ifchange.com/")
         # 点击登录
         base.click("点击页面的登录", '//a[contains(text(),"登录")]')
@@ -58,10 +57,11 @@ class TestFirstDemo:
         time.sleep(2)
         # 点击展开筛选
         base.click("展开筛选项", '//span[contains(text(),"展开筛选")]')
-        # 输入姓名“丁潇潇”
-        base.send_keys("输入要搜索的姓名", '//input[@placeholder="请输入姓名"]', "于潇潇")
-        time.sleep(5)
+        # 输入姓名“马骏”
+        base.send_keys("输入要搜索的姓名", '//input[@placeholder="请输入姓名"]', "马骏")
         # 鼠标事件回车 或者点击姓名输入框的“√”
-        # driver.find_element_by_xpath('//input[@placeholder="请输入姓名"]').send_keys()
-        # 点击丁潇潇姓名，或者点击头像进入简历详情页
+        base.keys_enter("点击回车搜索", '//input[@placeholder="请输入姓名"]')
+        # 点击马骏姓名，或者点击头像进入简历详情页
+        base.click("定位到第一个马骏", "(//span[contains(text(),'马骏')])[2]")
+        time.sleep(4)
         #
