@@ -1,0 +1,68 @@
+UI自动化特殊处理--获取元素属性--爬取页面源码--常用断言
+1、获取元素属性
+获取title:driver.title()
+获取元素文本:driver.find_xx.text
+获取元素标签:driver.find_xx.tag_name
+获取元素的其他属性的值:driver.find_xx().get_attribute("class")
+获取文本框输入的值:driver.find_xx().get_attribute("value")
+获取浏览器的名称:driver.name
+
+2、爬取页面源码
+爬取页面源码:driver.page_source
+1)导入re模块
+2)非贪婪匹配，re.S('.'匹配字符,包括换行符)
+3)findall方法返回的是一个list集合
+```
+from selenium import webdriver
+import re<br>
+driver = webdriver.Firefox()<br>
+driver.get("https://www.baidu.com/")
+page = driver.page_source<br>
+url_list = re.findall('href=\"(.*?)\"',page,re.S)
+url_all = []
+for url in url_list:
+    if "http" in url:
+        url_all.append(url)
+```
+3、常用断言
+assertEqual(self,first,second,msg=None)
+--判断两个参数相等：first == second
+
+assertNotEqual(self, first, second, msg=None)
+--判断两个参数不相等：first ！= second
+
+assertIn(self, member, container, msg=None)
+--判断是字符串是否包含：member in container
+
+assertNotIn(self, member, container, msg=None)
+--判断是字符串是否不包含：member not in container
+
+assertTrue(self, expr, msg=None)
+--判断是否为真：expr is True
+
+assertFalse(self, expr, msg=None)
+--判断是否为假：expr is False
+
+assertIsNone(self, obj, msg=None)
+--判断是否为 None：obj is None
+
+assertIsNotNone(self, obj, msg=None)
+--判断是否不为 None：obj is not None
+
+forexample:
+        element2 = driver.find_element_by_xpath("//div[@role='alert']/p")
+        info2 = element2.text
+        assertion = Assert.Assertions()
+        assertion.assert_in_text(info2,"发货成功")
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+
+
+
+
+
+
+

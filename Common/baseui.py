@@ -278,6 +278,37 @@ class baseUI():
 
         return element.text
 
+    # def get_title(self):
+    #     # 获取title
+    #     return self.driver.title()
+    @shot
+    def get_tag_name(self,step,xpath):
+        '''
+        #获取元素标签
+        :param step:操作步骤
+        :param xpath:xpath
+        :return:页面元素标签
+        '''
+
+        element=self.local_element(xpath)
+        return element.tag_name
+    @shot
+    def get_other_attribute(self,step,xpath,attribute):
+        '''
+        #获取元素的其他属性的值,或者文本框输入的值
+        :param step:操作步骤
+        :param xpath:xpath
+        :param attribute:其他属性的值，或者文本框输入的值，例如class，value
+        :return:页面元素的展示文本
+        '''
+
+        element=self.local_element(xpath)
+
+        return element.get_attribute(attribute)
+
+    def get_name(self):
+        # 获取浏览器名称
+        return self.driver.name
     @shot
     def keys_enter(self, step, xpath):
         '''

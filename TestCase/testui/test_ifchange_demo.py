@@ -2,6 +2,7 @@
 from Common.baseui import *
 from selenium.webdriver import ActionChains
 from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
 
 class TestFirstDemo:
 
@@ -42,6 +43,7 @@ class TestFirstDemo:
         base = baseUI(driver)
         # 打开网址
         base.driver.get("https://www.ifchange.com/")
+        # print(base.get_title())
         # 点击登录
         base.click("点击页面的登录", '//a[contains(text(),"登录")]')
         # 输入用户名
@@ -49,9 +51,7 @@ class TestFirstDemo:
         # 输入密码
         base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190302aits')
         # 点击登录
-        time.sleep(2)
         base.click('登录', "//span[text()='登录']/parent::button")
-        time.sleep(2)
         # 切换网址至人才库
         base.driver.get("https://www.ifchange.com/archives/")
         time.sleep(2)
@@ -61,7 +61,12 @@ class TestFirstDemo:
         base.send_keys("输入要搜索的姓名", '//input[@placeholder="请输入姓名"]', "马骏")
         # 鼠标事件回车 或者点击姓名输入框的“√”
         base.keys_enter("点击回车搜索", '//input[@placeholder="请输入姓名"]')
+        time.sleep(3)
         # 点击马骏姓名，或者点击头像进入简历详情页
         base.click("定位到第一个马骏", "(//span[contains(text(),'马骏')])[2]")
-        time.sleep(4)
         #
+        # print(base.get_name())
+        # print(base.get_title())
+        # EC.title_is(base.get_title())(driver)
+
+
