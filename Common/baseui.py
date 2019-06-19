@@ -10,7 +10,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-
+from selenium.common.exceptions import NoSuchElementException
 
 def shot(func):
     def function(*args, **kwargs):
@@ -32,6 +32,9 @@ class baseUI():
     def local_element(self,xpath):
        return WebDriverWait(self.driver, 5, 0.3).until(EC.presence_of_element_located((By.XPATH,xpath)))
 
+    def find_elements_xpath(self,xpath):
+        # 获取xpath对应的元素列表，返回的是一个列表
+        return self.driver.find_elements_by_xpath(xpath)
     @shot
     def send_keys(self,step,xpath,text):
         '''
@@ -277,10 +280,41 @@ class baseUI():
         element=self.local_element(xpath)
 
         return element.text
-
-    # def get_title(self):
-    #     # 获取title
-    #     return self.driver.title()
+    def get_page_source(self):
+        '''
+        # 获取页面源码
+        :return:页面元素的展示文本
+        '''
+        return self.driver.page_source
+    def real_is_displayed(self,step,xpath):
+        '''
+        # 判断元素是否存在,只能判断隐藏的元素和已存在的元素,不能在不存在的元素上调用is_displayed()方法
+        :param step:操作步骤
+        :param xpath:xpath
+        :return: 存在返回True,不存在返回False
+        '''
+        return self.driver.find_element_by_xpath(xpath).is_displayed()
+    def displayed(self,xpath):
+        # 判断页面的元素是否存在，存在返回True,不存在返回False
+        found = False
+        while not found:
+            try:
+                element_ = self.driver.find_element_by_xpath(xpath)
+                # if element_.is_displayed():
+                    # value = element_.find_element_by_css_selector("*")
+                    # print("Element: " + value.text)
+                found = True
+            except NoSuchElementException:
+                time.sleep(1)
+                # print("Element: N/A")
+                # found = False
+                return False
+        return found
+    def get_the_title(self):
+        # 获取title
+        # 注意点：这里的title不能加括号，可以链接进去看其调用方法
+        title = self.driver.title
+        return title
     @shot
     def get_tag_name(self,step,xpath):
         '''

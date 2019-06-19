@@ -3,6 +3,8 @@ from Common.baseui import *
 from selenium.webdriver import ActionChains
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
+import random
+import re
 
 class TestFirstDemo:
 
@@ -43,13 +45,13 @@ class TestFirstDemo:
         base = baseUI(driver)
         # 打开网址
         base.driver.get("https://www.ifchange.com/")
-        # print(base.get_title())
+        print(base.get_the_title())
         # 点击登录
         base.click("点击页面的登录", '//a[contains(text(),"登录")]')
         # 输入用户名
         base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'baolong.yang@ifchange.com')
         # 输入密码
-        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190302aits')
+        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190619aits')
         # 点击登录
         base.click('登录', "//span[text()='登录']/parent::button")
         # 切换网址至人才库
@@ -64,9 +66,68 @@ class TestFirstDemo:
         time.sleep(3)
         # 点击马骏姓名，或者点击头像进入简历详情页
         base.click("定位到第一个马骏", "(//span[contains(text(),'马骏')])[2]")
-        #
-        # print(base.get_name())
-        # print(base.get_title())
-        # EC.title_is(base.get_title())(driver)
+        # 判断当前的title是否是“我的人才_e成”
+        ec_title_contains = EC.title_contains("我的人才_e成")
+        print(ec_title_contains(driver))
+        time.sleep(2)
+        # 判断简历详情页的数据是否和预期的一样
+        # 判断简历详情页里的设置优先展示原始简历还是标准简历的确定按钮是否存在
+        if base.displayed("//span[contains(text(),'确定')]/parent::button"):
+            # print("element is true")
+            if base.displayed("//span[contains(text(),'优先展示标准简历')]"):
+                # print("element2 is true")
+                base.click("点击优先展示标准简历", "//span[contains(text(),'优先展示标准简历')]")
+                base.click("点击展示标准简历", "//span[contains(text(),'确定')]/parent::button")
+                base.click("点击标准简历", "//li[text()='标准简历']")
+            else:
+                base.click("点击标准简历", "//li[text()='标准简历']")
+        else:
+            base.click("点击标准简历", "//li[text()='标准简历']")
+        print(base.displayed("//span[contains(text(),'18298489023')]"))
+        print(base.displayed("//span[contains(text(),'1670063424@qq.com')]"))
+        print(base.displayed("//div[contains(text(),'求职意向')]"))
+        print(base.displayed("//div[contains(text(),'教育经历')]"))
+        print(base.displayed("//div[contains(text(),'工作经历')]"))
 
-
+    def test_random_resume_detail(self, driver):
+        # a_list = []
+        base = baseUI(driver)
+        # 打开网址
+        base.driver.get("https://www.ifchange.com/")
+        # 点击登录
+        base.click("点击页面的登录", '//a[contains(text(),"登录")]')
+        # 输入用户名
+        base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'baolong.yang@ifchange.com')
+        # 输入密码
+        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190619aits')
+        # 点击登录
+        base.click('登录', "//span[text()='登录']/parent::button")
+        # 切换网址至人才库
+        base.driver.get("https://www.ifchange.com/archives/")
+        time.sleep(3)
+        # 获取所有包含简历详情的a标签
+        # element = base.find_elements_xpath("//span[text()='全选']/parent::label/parent::div/parent::div/parent::div//following-sibling::div//a")
+        element = base.find_elements_xpath('//div[@class="ic-layoutnew__content-wrap"]//div[@class="ant-spin-nested-loading"]//div[@class="resume__item"]//a')
+        # 获取元素里的链接
+        # for i in element:
+        #     link = i.get_attribute("href")
+        #     a_list.append(link)
+        # base.driver.get(a_list[a])
+        choice = random.choice(element)
+        choice.click()
+        # 判断简历详情页的数据是否和预期的一样
+        # 判断简历详情页里的设置优先展示原始简历还是标准简历的确定按钮是否存在
+        if base.displayed("//span[contains(text(),'确定')]/parent::button"):
+            # print("element is true")
+            if base.displayed("//span[contains(text(),'优先展示标准简历')]"):
+                # print("element2 is true")
+                base.click("点击优先展示标准简历", "//span[contains(text(),'优先展示标准简历')]")
+                base.click("点击展示标准简历", "//span[contains(text(),'确定')]/parent::button")
+                base.click("点击标准简历", "//li[text()='标准简历']")
+            else:
+                base.click("点击标准简历", "//li[text()='标准简历']")
+        else:
+            base.click("点击标准简历", "//li[text()='标准简历']")
+        print(base.displayed("//div[contains(text(),'求职意向')]"))
+        print(base.displayed("//div[contains(text(),'教育经历')]"))
+        print(base.displayed("//div[contains(text(),'工作经历')]"))

@@ -54,9 +54,57 @@ forexample:
         info2 = element2.text
         assertion = Assert.Assertions()
         assertion.assert_in_text(info2,"发货成功")
-
+4、ExpectedCondition用法说明
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+titleIs( String title)
+--判断当前页面的title是否精确等于预期
+
+titleContains( String title)
+--判断当前页面的title是否包含预期字符串
+
+urlToBe( String url)
+--判断当前页面的url是否精确等于预期
+
+urlContains( String fraction)
+--判断当前页面的url是否包含预期字符串
+
+urlMatches( String regex)
+--字符串正则表达式
+
+presenceOfElementsLocated( By locator)
+--判断元素是否出现，必须所有符合条件的元素都加载出来，才通过。
+
+presenceOfElementLocated( By locator)
+--判断元素是否出现，只要有一个元素出现，就通过。（代表在不代表可见）
+判断是否至少有 1 个元素存在于 dom 树中。
+举个例子，如果页面上有 n 个元素的 class 都是’column-md-3’，那么只要有 1 个元素存在，这个方法就返回 True。
+
+elementIfVisible(WebElement element)
+--如果给定元素是可见的且具有非零大小，否则为null
+
+presenceOfAllElementsLocatedBy( By locator)
+--判断元素是否出现。
+
+visibilityOfElementLocated( By locator)
+--判断某个元素是否可见. 可见代表元素非隐藏，并且元素宽和高都不等于 0
+
+visibilityOfAllElementsLocatedBy( By locator)
+--判断某组元素是否可见
+
+visibilityOfAllElements(final List<WebElement> elements)
+--判断某个元素是否可见. 可见代表元素非隐藏，并且元素宽和高都不等于 0
+
+textToBePresentInElement( WebElement element,  String text)
+--判断某个元素中的text是否包含了预期的字符串；
+
+textToBePresentInElement(By locator, String text)
+--判断某个元素中的 text 是否 包含 了预期的字符串
+
+textToBePresentInElementLocated(final By locator, final String text)
+--判断某个元素中的 text 是否 包含 了预期的字符串
+
 
 
 
