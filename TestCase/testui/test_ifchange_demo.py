@@ -7,24 +7,24 @@ import random
 import re
 
 class TestFirstDemo:
-
-    def test_demo1(self, driver):
-        base = baseUI(driver)
-        # 打开网址
-        base.driver.get("http://www.testing2.ifchange.com/")
-        # 点击登录
-        base.click("点击页面的登录", '//a[contains(text(),"登录")]')
-        # 输入用户名
-        base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'chenyang@ifchange.com')
-        # 输入密码
-        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', 'abc123')
-        # 点击登录
-        time.sleep(2)
-        base.click('登录', "//span[text()='登录']/parent::button")
-        time.sleep(2)
-        # 切换网址至人才库
-        base.driver.get("http://www.testing2.ifchange.com/archives/crm/list")
-        time.sleep(5)
+    #
+    # def tes1t_demo1(self, driver):
+    #     base = baseUI(driver)
+    #     # 打开网址
+    #     base.driver.get("http://www.testing2.ifchange.com/")
+    #     # 点击登录
+    #     base.click("点击页面的登录", '//a[contains(text(),"登录")]')
+    #     # 输入用户名
+    #     base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'chenyang@ifchange.com')
+    #     # 输入密码
+    #     base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', 'abc123')
+    #     # 点击登录
+    #     time.sleep(2)
+    #     base.click('登录', "//span[text()='登录']/parent::button")
+    #     time.sleep(2)
+    #     # 切换网址至人才库
+    #     base.driver.get("http://www.testing2.ifchange.com/archives/crm/list")
+        # time.sleep()
         # 点击新增任务
         # 点击发送生日祝福
         # 输入任务名称;儿童节快乐
@@ -70,6 +70,7 @@ class TestFirstDemo:
         ec_title_contains = EC.title_contains("我的人才_e成")
         print(ec_title_contains(driver))
         time.sleep(2)
+
         # 判断简历详情页的数据是否和预期的一样
         # 判断简历详情页里的设置优先展示原始简历还是标准简历的确定按钮是否存在
         if base.displayed("//span[contains(text(),'确定')]/parent::button"):
@@ -94,14 +95,14 @@ class TestFirstDemo:
         base = baseUI(driver)
         # 打开网址
         base.driver.get("https://www.ifchange.com/")
-        # 点击登录
-        base.click("点击页面的登录", '//a[contains(text(),"登录")]')
-        # 输入用户名
-        base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'baolong.yang@ifchange.com')
-        # 输入密码
-        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190619aits')
-        # 点击登录
-        base.click('登录', "//span[text()='登录']/parent::button")
+        # # 点击登录
+        # base.click("点击页面的登录", '//a[contains(text(),"登录")]')
+        # # 输入用户名
+        # base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'baolong.yang@ifchange.com')
+        # # 输入密码
+        # base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190619aits')
+        # # 点击登录
+        # base.click('登录', "//span[text()='登录']/parent::button")
         # 切换网址至人才库
         base.driver.get("https://www.ifchange.com/archives/")
         time.sleep(3)

@@ -19,12 +19,15 @@ if __name__ == '__main__':
     log = Log.MyLog()
 
     shell = Shell.Shell()
+    # 测试数据地址
     xml_report_path = './Report/xml/'
-    html_report_path = './Report/report/'
-
-
-    pytest.main(['-v', '--alluredir',xml_report_path,'./TestCase'])
-    #cmd = 'allure generate %s -o %s' % (xml_report_path, html_report_path)
+    # 测试报告地址
+    # html_report_path = './Report/report/'
+    # pytest.main(['-s', '-q', '--alluredir', xml_report_path, './TestCase'])
+    # 生成测试数据
+    pytest.main(['-s', '-q', '--alluredir', xml_report_path])
+    # 根据测试数据生成html测试报告
+    # cmd = "allure generate %s -o %s --clean" % (xml_report_path, html_report_path)
     cmd = "allure generate %s -o ./Report/report/ --clean"%(xml_report_path)
 
     try:
