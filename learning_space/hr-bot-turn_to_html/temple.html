@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>{{ data['reportName'] }}-hrbot_test_report</title>
+
+    <style>
+
+        body {
+            font:14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif
+        }
+
+        .container {
+            /*width: 1170px;*/
+            /*padding-right: 15px;*/
+            /*padding-left: 15px;*/
+            /*margin-right: auto;*/
+            /*margin-left: auto;*/
+            /*border: 1px solid red;*/
+            /*height: 100vh;*/
+            text-align: center;
+
+        }
+
+        .layui-field-title {
+            margin: 10px 0 20px;
+            border-width: 1px 0 0
+        }
+
+        .layui-field-box {
+            padding: 10px 15px
+        }
+
+        .layui-field-title .layui-field-box {
+            padding: 10px 0
+        }
+
+        .layui-table {
+            width: 100%;
+            background-color: #fff;
+            color: #666
+        }
+
+        .layui-table tr {
+            transition: all .3s;
+            -webkit-transition: all .3s
+        }
+
+        .layui-table th {
+            text-align: center;
+            font-weight: 400
+        }
+
+        .layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
+        .layui-table td, .layui-table th, .layui-table-col-set, .layui-table-fixed-r, .layui-table-grid-down, .layui-table-header, .layui-table-page, .layui-table-tips-main, .layui-table-tool, .layui-table-total, .layui-table-view, .layui-table[lay-skin=line], .layui-table[lay-skin=row] {
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e6e6e6
+        }
+
+        .layui-table td, .layui-table th {
+            position: relative;
+            padding: 9px 15px;
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 14px
+        }
+        .style_title{
+                margin-left: 20px;
+                padding: 0 10px;
+                font-size: 20px;
+                font-weight: 300;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;color: blue">
+        <legend class="style_title">{{ data['reportName'] }}-HR-Bot测试报告</legend>
+    </fieldset>
+    <div class="layui-form">
+        <table class="layui-table" border="1">
+            <colgroup>
+                <col >
+                <col >
+                <col >
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                {% for user in data['biaotou'] %}
+                <th>{{ user }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in data['biaoneirong'] %}
+            <tr>
+                {% for ss in user %}
+                <!--<td>{{ ss }}</td>-->
+                    {% if ss == 'FAIL' %}
+                    <td bgcolor="red">{{ ss }}</td>
+                    {% else %}
+                    <td>{{ ss }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

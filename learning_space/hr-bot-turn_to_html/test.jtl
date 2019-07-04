@@ -1,5 +1,5 @@
 timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,Latency,IdleTime,Connect
-1561680092706,905,登陆接口,200,OK,hrbot-我要安排面试流程 1-1,text,true,,1841,264,1,1,903,0,516
+1561680092706,905,登陆接口,200,FAIL,hrbot-我要安排面试流程 1-1,text,true,,1841,264,1,1,903,0,516
 1561680093653,251,我要安排面试,200,OK,hrbot-我要安排面试流程 1-1,text,true,,458,710,1,1,251,0,11
 1561680093999,728,输入候选人姓名,200,OK,hrbot-我要安排面试流程 1-1,text,true,,1438,707,1,1,727,0,10
 1561680094920,418,选择一位候选人,200,OK,hrbot-我要安排面试流程 1-1,text,true,,1586,721,1,1,417,0,10
