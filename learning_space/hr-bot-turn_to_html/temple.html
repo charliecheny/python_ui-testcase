@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <title>{{ data['reportName'] }}-hrbot_test_report</title>
+    <title>hrbot_test_report</title>
 
     <style>
 
@@ -104,7 +104,7 @@
             <tr>
                 {% for ss in user %}
                 <!--<td>{{ ss }}</td>-->
-                    {% if ss == 'FAIL' %}
+                    {% if ss == 'FAIL'or ss == 'false' %}
                     <td bgcolor="red">{{ ss }}</td>
                     {% else %}
                     <td>{{ ss }}</td>

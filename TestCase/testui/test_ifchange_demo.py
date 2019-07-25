@@ -132,3 +132,37 @@ class TestFirstDemo:
         print(base.displayed("//div[contains(text(),'求职意向')]"))
         print(base.displayed("//div[contains(text(),'教育经历')]"))
         print(base.displayed("//div[contains(text(),'工作经历')]"))
+
+    def test_resume_download(self, driver):
+        base = baseUI(driver)
+        # 打开网址
+        base.driver.get("https://www.ifchange.com/")
+        print(base.get_the_title())
+        # 点击登录
+        base.click("点击页面的登录", '//a[contains(text(),"登录")]')
+        # 输入用户名
+        base.send_keys("输入用户名", "//input[@placeholder='请输入登录邮箱']", 'baolong.yang@ifchange.com')
+        # 输入密码
+        base.send_keys('输入密码', '//input[@placeholder="请输入登录密码"]', '20190619aits')
+        # 点击登录
+        base.click('登录', "//span[text()='登录']/parent::button")
+        # 切换网址至人才库
+        base.driver.get("https://www.ifchange.com/archives/")
+        time.sleep(1)
+        # 点击跳转任意页
+        base.send_keys("输入任意页的值", "//button[text()='确定']/parent::div//input", '11')
+        base.click("点击确定", "//button[text()='确定']")
+        time.sleep(2)
+        # 获取页面所有a标签的链接
+        element = base.find_elements_xpath('//div[@class="ic-layoutnew__content-wrap"]//div[@class="ant-spin-nested-loading"]//div[@class="resume__item"]//a')
+        # 获取元素里的链接
+        # for i in element:
+        #     link = i.get_attribute("href")
+        #     a_list.append(link)
+        # base.driver.get(a_list[a])
+        choice = random.choice(element)
+        choice.click()
+        # time.sleep(2)
+        base.click("点击导出为文件", '//div[@class="operation-item export-item"]')
+        base.click("点击导出为pdf", '//div[@class="download-icon"]/a[2]')
+        time.sleep(2)

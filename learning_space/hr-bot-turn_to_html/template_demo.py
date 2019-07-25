@@ -5,9 +5,10 @@ import os
 env = Environment(loader=FileSystemLoader("."),
                   autoescape=select_autoescape(['html', 'xml']))
 template = env.get_template("temple.html")
-htmlname = datetime.datetime.now().strftime('%Y-%m-%d')
+reportname = datetime.datetime.now().strftime('%Y-%m-%d')
+htmlname = 'test'
 data = {
-    'reportName':htmlname,
+    'reportName': reportname,
     'biaotou':[],
     'biaoneirong':[]
 }
